@@ -126,7 +126,7 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
 
             if (ModelState.IsValid)
             {
-                var entity = _context.Images.AsNoTracking().FirstOrDefault(i=>i.Id == id);
+                var entity = _context.Images.AsNoTracking().FirstOrDefault(i => i.Id == id);
                 string fullPath = null;
                 string currentPath = null;
 
@@ -166,7 +166,7 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
                     }
                 }
                 catch (DbUpdateConcurrencyException)
-                {                          
+                {
                     if (System.IO.File.Exists(fullPath) && !string.IsNullOrWhiteSpace(fullPath))
                     {
                         System.IO.File.Delete(fullPath);
