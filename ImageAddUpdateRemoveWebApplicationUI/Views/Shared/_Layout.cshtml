@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Main"] = "Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title / @ViewData["Main"]</title>
+    <link href="~/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    @RenderBody()
+    <script src="~/libs/jquery/jquery.min.js"></script>
+    <script src="~/libs/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
