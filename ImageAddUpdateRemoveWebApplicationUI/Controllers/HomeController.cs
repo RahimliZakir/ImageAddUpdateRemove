@@ -116,7 +116,7 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("FileTemp,Id,CreatedDate,UpdatedDate,DeletedDate")] Image image, IFormFile file)
         {
             if (id != image.Id)
@@ -126,7 +126,7 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
 
             if (ModelState.IsValid)
             {
-                var entity = _context.Images.AsNoTracking().FirstOrDefault(i => i.Id == id);
+                var entity = _context.Images.AsNoTracking().FirstOrDefault(i=>i.Id == id);
                 string fullPath = null;
                 string currentPath = null;
 
@@ -150,12 +150,12 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
                     }
 
                     image.ImagePath = fileName;
+
+                    image.UpdatedDate = DateTime.UtcNow.AddHours(4);
                 }
 
                 try
                 {
-                    image.UpdatedDate = DateTime.UtcNow.AddHours(4);
-
                     _context.Update(image);
 
                     await _context.SaveChangesAsync();
