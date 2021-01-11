@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ImageAddUpdateRemoveWebApplicationUI.Models.DataContext;
+using ImageAddUpdateRemoveWebApplicationUI.Models.Entity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ImageAddUpdateRemoveWebApplicationUI.Models.DataContext;
-using ImageAddUpdateRemoveWebApplicationUI.Models.Entity;
 
 namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ImageDbContext _context;
+        readonly IWebHostEnvironment env;
 
-        public HomeController(ImageDbContext context)
+        public HomeController(ImageDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            this.env = env;
         }
 
         // GET: Home
@@ -54,14 +57,42 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ImagePath,Id,CreatedDate,UpdatedDate,DeletedDate")] Image image)
+        public async Task<IActionResult> Create([Bind("ImagePath,Id,CreatedDate,UpdatedDate,DeletedDate")] Image image, IFormFile file)
         {
-            if (ModelState.IsValid)
+            if (file == null)
             {
-                _context.Add(image);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("imageSelectError", "Şəkil seçməyibsiniz!");
             }
+            else
+            {
+                var ext = Path.GetExtension(file.FileName);
+                var fileName = $"image-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                var fullPath = Path.Combine(env.WebRootPath, "uploads", "images", fileName);
+
+                using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                {
+                    file.CopyTo(fs);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        image.ImagePath = fileName;
+                    }
+                    catch (Exception)
+                    {
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                    }
+                    _context.Add(image);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
             return View(image);
         }
 
@@ -86,7 +117,7 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ImagePath,Id,CreatedDate,UpdatedDate,DeletedDate")] Image image)
+        public async Task<IActionResult> Edit(int id, [Bind("FileTemp,Id,CreatedDate,UpdatedDate,DeletedDate")] Image image, IFormFile file)
         {
             if (id != image.Id)
             {
@@ -95,13 +126,52 @@ namespace ImageAddUpdateRemoveWebApplicationUI.Controllers
 
             if (ModelState.IsValid)
             {
+                var entity = _context.Images.AsNoTracking().FirstOrDefault(i => i.Id == id);
+                string fullPath = null;
+                string currentPath = null;
+
+                if (file == null && !string.IsNullOrWhiteSpace(image.FileTemp))
+                {
+                    image.ImagePath = entity.ImagePath;
+                }
+                else if (file == null)
+                {
+                    currentPath = Path.Combine(env.WebRootPath, "uploads", "images", entity.ImagePath);
+                }
+                else if (file != null)
+                {
+                    var ext = Path.GetExtension(file.FileName);
+                    var fileName = $"image-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                    fullPath = Path.Combine(env.WebRootPath, "uploads", "images", fileName);
+
+                    using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                    {
+                        file.CopyTo(fs);
+                    }
+
+                    image.ImagePath = fileName;
+                }
+
                 try
                 {
+                    image.UpdatedDate = DateTime.UtcNow.AddHours(4);
+
                     _context.Update(image);
+
                     await _context.SaveChangesAsync();
+
+                    if (System.IO.File.Exists(currentPath) && !string.IsNullOrWhiteSpace(currentPath))
+                    {
+                        System.IO.File.Delete(currentPath);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
-                {
+                {                          
+                    if (System.IO.File.Exists(fullPath) && !string.IsNullOrWhiteSpace(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+
                     if (!ImageExists(image.Id))
                     {
                         return NotFound();

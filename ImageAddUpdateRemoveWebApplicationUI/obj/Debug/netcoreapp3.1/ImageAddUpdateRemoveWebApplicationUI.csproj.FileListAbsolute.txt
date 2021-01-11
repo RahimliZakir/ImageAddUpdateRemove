@@ -73,7 +73,6 @@ C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicati
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.Views.dll
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.Views.pdb
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.Views.pdb
-C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.csprojAssemblyReference.cache
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\Microsoft.Data.Sqlite.dll
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Sqlite.dll
@@ -167,10 +166,13 @@ C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicati
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.csproj.CoreCompileInputs.cache
-C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Delete.cshtml.g.cs
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Details.cshtml.g.cs
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs
 C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\source\repos\ImageAddUpdateRemove\ImageAddUpdateRemoveWebApplicationUI\obj\Debug\netcoreapp3.1\ImageAddUpdateRemoveWebApplicationUI.csprojAssemblyReference.cache
